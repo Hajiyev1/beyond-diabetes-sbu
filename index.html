@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Diabetes at Stony Brook University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal-50: #E1F5EE;
+    --teal-100: #9FE1CB;
+    --teal-200: #5DCAA5;
+    --teal-400: #1D9E75;
+    --teal-600: #0F6E56;
+    --teal-800: #085041;
+    --teal-900: #04342C;
+
+    --sand-50: #FAF8F4;
+    --sand-100: #F0EDE7;
+    --sand-200: #DDD9D0;
+    --sand-400: #B0A99C;
+    --sand-700: #6B6660;
+
+    --text-primary: #1A1A18;
+    --text-secondary: #5A5956;
+    --text-muted: #8C8A85;
+
+    --white: #FFFFFF;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-primary);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--sand-200);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .nav-logo {
+    width: 32px;
+    height: 32px;
+    background: var(--teal-400);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo svg { width: 18px; height: 18px; fill: white; }
+
+  .nav-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .nav-name span {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+
+  .nav-links a:hover { background: var(--sand-100); color: var(--text-primary); }
+  .nav-links a.active { color: var(--teal-600); background: var(--teal-50); }
+
+  .nav-cta {
+    background: var(--teal-400) !important;
+    color: white !important;
+    padding: 7px 16px !important;
+  }
+  .nav-cta:hover { background: var(--teal-600) !important; }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* HERO */
+  .hero {
+    background: var(--sand-50);
+    padding: 80px 2rem 100px;
+    border-bottom: 1px solid var(--sand-200);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    background: var(--teal-50);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-600);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 2px;
+    background: var(--teal-400);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal-600);
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: var(--teal-400);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--teal-600); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--text-primary);
+    border: 1px solid var(--sand-200);
+  }
+  .btn-secondary:hover { border-color: var(--sand-400); }
+
+  /* STATS BAR */
+  .stats-bar {
+    border-bottom: 1px solid var(--sand-200);
+    padding: 1.5rem 2rem;
+  }
+
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--teal-600);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .stat-label { font-size: 12px; color: var(--text-muted); letter-spacing: 0.02em; }
+
+  .stats-divider { width: 1px; height: 40px; background: var(--sand-200); }
+
+  /* SECTIONS */
+  section { padding: 72px 2rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-400);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* MISSION CARDS */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--sand-200);
+    border: 1px solid var(--sand-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .pillar-card {
+    background: white;
+    padding: 2rem;
+  }
+
+  .pillar-icon {
+    width: 40px; height: 40px;
+    background: var(--teal-50);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .pillar-icon svg { width: 20px; height: 20px; stroke: var(--teal-600); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .pillar-title { font-weight: 600; font-size: 15px; margin-bottom: 0.5rem; }
+  .pillar-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* BLOG SECTION */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .blog-card {
+    background: white;
+    border: 1px solid var(--sand-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .blog-card:hover {
+    border-color: var(--teal-200);
+    box-shadow: 0 4px 20px rgba(15,110,86,0.08);
+  }
+
+  .blog-card-header {
+    background: var(--sand-50);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--sand-200);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .blog-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--teal-50);
+    color: var(--teal-600);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .blog-card-body { padding: 1.5rem; }
+  .blog-date { font-size: 12px; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .blog-title { font-weight: 600; font-size: 15px; line-height: 1.4; margin-bottom: 0.6rem; }
+  .blog-excerpt { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  .blog-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--teal-600);
+    margin-top: 1rem;
+    text-decoration: none;
+  }
+
+  .blog-read-more svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform 0.15s; }
+  .blog-card:hover .blog-read-more svg { transform: translateX(3px); }
+
+  /* RESOURCE GUIDE */
+  .guide-intro {
+    background: var(--teal-50);
+    border: 1px solid var(--teal-100);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .guide-intro-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--teal-400);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .guide-intro-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .guide-intro p { font-size: 14px; color: var(--teal-800); line-height: 1.6; }
+  .guide-intro strong { font-weight: 600; }
+
+  .guide-category { margin-bottom: 3rem; }
+
+  .guide-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--sand-100);
+  }
+
+  .guide-cat-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--text-primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .guide-cat-title { font-size: 18px; font-weight: 600; }
+
+  .guide-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .guide-item {
+    border: 1px solid var(--sand-200);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    background: white;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .guide-item:hover {
+    border-color: var(--teal-200);
+    box-shadow: 0 2px 12px rgba(15,110,86,0.07);
+  }
+
+  .guide-item-brand {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .guide-item-model { font-weight: 600; font-size: 15px; margin-bottom: 0.5rem; }
+  .guide-item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+
+  .guide-item-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--teal-600);
+    text-decoration: none;
+    border: 1px solid var(--teal-100);
+    background: var(--teal-50);
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .guide-item-link:hover { background: var(--teal-100); border-color: var(--teal-200); }
+  .guide-item-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .stats-inner { gap: 1.5rem; }
+    .stats-divider { display: none; }
+    .nav-links { display: none; }
+    .hero { padding: 48px 1.25rem 64px; }
+    section { padding: 48px 1.25rem; }
+  }
+
+  .about-text p { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.25rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .team-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sand-200);
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+    background: white;
+  }
+
+  .team-avatar {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--teal-50);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 14px;
+    color: var(--teal-600);
+  }
+
+  .team-name { font-weight: 600; font-size: 14px; }
+  .team-role { font-size: 12px; color: var(--text-muted); }
+
+  /* CONTACT */
+  .contact-section { background: var(--sand-50); border-top: 1px solid var(--sand-200); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) { .contact-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .contact-form-group { margin-bottom: 1rem; }
+  .contact-label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary); }
+
+  .contact-input, .contact-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--sand-200);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    color: var(--text-primary);
+    transition: border-color 0.15s;
+    outline: none;
+  }
+
+  .contact-input:focus, .contact-textarea:focus { border-color: var(--teal-400); box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
+  .contact-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+  .contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-info-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--teal-50);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-info-icon svg { width: 16px; height: 16px; stroke: var(--teal-600); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .contact-info-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+  .contact-info-val { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-primary);
+    color: rgba(255,255,255,0.55);
+    padding: 2rem;
+    font-size: 13px;
+  }
+
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .footer-disclaimer { font-size: 12px; max-width: 400px; line-height: 1.5; }
+
+  /* BLOG POST VIEW */
+  .blog-post-view { display: none; }
+  .blog-post-view.active { display: block; }
+
+  .post-header {
+    background: var(--sand-50);
+    padding: 60px 2rem;
+    border-bottom: 1px solid var(--sand-200);
+  }
+
+  .post-header-inner { max-width: 760px; margin: 0 auto; }
+
+  .post-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+  .post-back:hover { color: var(--teal-600); }
+  .post-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; flex-wrap: wrap; }
+
+  .post-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .post-author {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .post-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .post-body h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .post-body p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-body ul {
+    margin: 0 0 1.25rem 1.5rem;
+  }
+
+  .post-body li {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 0.4rem;
+  }
+
+  .post-callout {
+    background: var(--teal-50);
+    border-left: 3px solid var(--teal-400);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 15px;
+    color: var(--teal-800);
+    line-height: 1.65;
+  }
+
+  /* Utility */
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#" onclick="navigate('home')">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 6 4.5 6 8c0 4 3 6 4 9h4c1-3 4-5 4-9 0-3.5-2.5-6-6-6z"/><path d="M9 21h6M10 18h4" style="fill:none;stroke:white;stroke-width:1.5;stroke-linecap:round"/></svg>
+    </div>
+    <div class="nav-name">
+      Beyond Diabetes
+      <span>Stony Brook University</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="navigate('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="navigate('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="navigate('blog')" id="nav-blog">Blog</a></li>
+    <li><a href="#" onclick="navigate('resources')" id="nav-resources">Resource Guide</a></li>
+    <li><a href="#" onclick="navigate('contact')" id="nav-contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Student Advocacy · Stony Brook University</div>
+      <h1>Living <em>beyond</em> diabetes,<br>together.</h1>
+      <p class="hero-desc">A student-led community supporting those affected by diabetes — building understanding, sharing resources, and advocating for better care on campus.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#" onclick="navigate('about')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Get involved
+        </a>
+        <a class="btn btn-secondary" href="#" onclick="navigate('resources')">
+          Browse resources
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">1 in 10</div>
+        <div class="stat-label">Americans have diabetes</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">96M+</div>
+        <div class="stat-label">Adults have prediabetes</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">Type 1 & 2</div>
+        <div class="stat-label">Both communities welcome</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">SBU</div>
+        <div class="stat-label">Stony Brook, New York</div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">What we do</div>
+      <h2 class="section-title">Built on three pillars</h2>
+      <p class="section-desc">We bring together students, educators, and the broader Stony Brook community to foster an informed and inclusive space around diabetes.</p>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="pillar-title">Education</div>
+          <div class="pillar-desc">Monthly deep-dives on emerging technology — CGMs, closed-loop systems, insulin delivery, and clinical research — written to be accessible and honest.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="pillar-title">Community</div>
+          <div class="pillar-desc">A safe, inclusive space for students living with diabetes, those supporting someone who does, or anyone wanting to learn more about the condition.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="pillar-title">Advocacy</div>
+          <div class="pillar-desc">Working toward better campus support for students managing chronic conditions — from dining accommodations to accessible healthcare resources.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--sand-50); border-top: 1px solid var(--sand-200); border-bottom: 1px solid var(--sand-200);">
+    <div class="section-inner">
+      <div class="section-label">Latest from the blog</div>
+      <h2 class="section-title">Tech updates &amp; insights</h2>
+      <p class="section-desc">Monthly research on the latest innovations in diabetes care technology — written by students, for students.</p>
+
+      <div class="blog-grid">
+        <a class="blog-card" href="#" onclick="openPost('post-1')">
+          <div class="blog-card-header">
+            <span class="blog-tag">CGM Technology</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-date">May 2025</div>
+            <div class="blog-title">Dexcom G7 vs. Abbott Libre 3: What the Data Actually Shows</div>
+            <div class="blog-excerpt">A head-to-head comparison of accuracy, wear time, and smartphone integration between the two leading continuous glucose monitors in 2025.</div>
+            <div class="blog-read-more">
+              Read more
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+        <a class="blog-card" href="#" onclick="openPost('post-2')">
+          <div class="blog-card-header">
+            <span class="blog-tag">Closed-Loop Systems</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-date">April 2025</div>
+            <div class="blog-title">Automated Insulin Delivery in 2025: The State of the Loop</div>
+            <div class="blog-excerpt">From Omnipod 5 to Tandem Control-IQ — how hybrid closed-loop systems have matured and what's still missing for full autonomy.</div>
+            <div class="blog-read-more">
+              Read more
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+        <a class="blog-card" href="#" onclick="openPost('post-3')">
+          <div class="blog-card-header">
+            <span class="blog-tag">Research</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-date">March 2025</div>
+            <div class="blog-title">Non-Invasive Glucose Monitoring: Closer Than We Think?</div>
+            <div class="blog-excerpt">Optical, acoustic, and biosensor approaches to glucose detection without needle sticks — reviewing where the science actually stands today.</div>
+            <div class="blog-read-more">
+              Read more
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div style="margin-top: 2rem; text-align: center;">
+        <a class="btn btn-secondary" href="#" onclick="navigate('blog')">View all posts</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page">
+  <div class="hero" style="padding: 60px 2rem 72px;">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Our story</div>
+      <h1>More than a club —<br>a <em>community</em>.</h1>
+    </div>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">Mission</div>
+          <h2 class="section-title" style="margin-bottom: 1.5rem;">Who we are</h2>
+          <p>Beyond Diabetes at Stony Brook University is a student-led organization that creates an inclusive and educational community for students affected by diabetes, as well as those interested in understanding and supporting individuals living with the condition.</p>
+          <p>We believe that managing a chronic condition shouldn't mean navigating it alone. Our organization bridges the gap between medical complexity and daily student life — offering peer support, educational programming, and a resource network built specifically for the Stony Brook community.</p>
+          <p>Our Digital Infrastructure team publishes monthly research on advancements in diabetes technology — from continuous glucose monitors and insulin pumps to closed-loop systems and emerging non-invasive solutions — to keep our members informed about the tools that may meaningfully affect their lives.</p>
+        </div>
+        <div>
+          <div class="section-label" style="margin-bottom: 1rem;">Leadership</div>
+          <div class="team-card">
+            <div class="team-avatar">BD</div>
+            <div>
+              <div class="team-name">Executive Board</div>
+              <div class="team-role">President · Vice President · Secretary</div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar" style="background: var(--sand-100); color: var(--text-primary);">OC</div>
+            <div>
+              <div class="team-name">Outreach & Events</div>
+              <div class="team-role">Campus programs, awareness campaigns</div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar" style="background: var(--teal-50); color: var(--teal-600);">DI</div>
+            <div>
+              <div class="team-name">Digital Infrastructure</div>
+              <div class="team-role">Website, tech research, monthly blog</div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar" style="background: var(--sand-100); color: var(--text-primary);">AD</div>
+            <div>
+              <div class="team-name">Advocacy & Policy</div>
+              <div class="team-role">Campus health, accessibility, ADA resources</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem; padding: 1.25rem 1.5rem; background: var(--teal-50); border-radius: var(--radius-lg); border: 1px solid var(--teal-100);">
+            <div style="font-weight: 600; font-size: 14px; color: var(--teal-800); margin-bottom: 0.5rem;">Want to join us?</div>
+            <p style="font-size: 13px; color: var(--teal-700); line-height: 1.6; margin-bottom: 1rem;">We're open to all students regardless of diabetes status. Find us on SB Engage or reach out directly.</p>
+            <a class="btn btn-primary" href="#" onclick="navigate('contact')" style="font-size: 13px; padding: 8px 18px;">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BLOG PAGE -->
+<div id="page-blog" class="page">
+  <div id="blog-list-view">
+    <div class="hero" style="padding: 60px 2rem 72px;">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Digital Infrastructure · Monthly Research</div>
+        <h1>Technology &amp; <em>innovation</em><br>in diabetes care.</h1>
+        <p class="hero-desc">In-depth coverage of the devices, software, and science shaping modern diabetes management — published monthly.</p>
+      </div>
+    </div>
+    <section>
+      <div class="section-inner">
+        <div class="blog-grid" id="full-blog-grid">
+          <a class="blog-card" href="#" onclick="openPost('post-1')">
+            <div class="blog-card-header"><span class="blog-tag">CGM Technology</span></div>
+            <div class="blog-card-body">
+              <div class="blog-date">May 2025</div>
+              <div class="blog-title">Dexcom G7 vs. Abbott Libre 3: What the Data Actually Shows</div>
+              <div class="blog-excerpt">A head-to-head comparison of accuracy, wear time, and smartphone integration between the two leading continuous glucose monitors in 2025.</div>
+              <div class="blog-read-more">Read more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+          <a class="blog-card" href="#" onclick="openPost('post-2')">
+            <div class="blog-card-header"><span class="blog-tag">Closed-Loop Systems</span></div>
+            <div class="blog-card-body">
+              <div class="blog-date">April 2025</div>
+              <div class="blog-title">Automated Insulin Delivery in 2025: The State of the Loop</div>
+              <div class="blog-excerpt">From Omnipod 5 to Tandem Control-IQ — how hybrid closed-loop systems have matured and what's still missing for full autonomy.</div>
+              <div class="blog-read-more">Read more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+          <a class="blog-card" href="#" onclick="openPost('post-3')">
+            <div class="blog-card-header"><span class="blog-tag">Research</span></div>
+            <div class="blog-card-body">
+              <div class="blog-date">March 2025</div>
+              <div class="blog-title">Non-Invasive Glucose Monitoring: Closer Than We Think?</div>
+              <div class="blog-excerpt">Optical, acoustic, and biosensor approaches to glucose detection without needle sticks — reviewing where the science actually stands today.</div>
+              <div class="blog-read-more">Read more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+          <a class="blog-card" href="#" onclick="openPost('post-4')">
+            <div class="blog-card-header"><span class="blog-tag">Insulin Delivery</span></div>
+            <div class="blog-card-body">
+              <div class="blog-date">February 2025</div>
+              <div class="blog-title">Smart Insulin Pens: A Bridge to Better Management</div>
+              <div class="blog-excerpt">Connected pens from NovoPen and InPen are bringing data-driven dosing to people not on pumps. We explore whether the promise matches reality.</div>
+              <div class="blog-read-more">Read more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- BLOG POST: post-1 -->
+  <div id="blog-post-view" class="blog-post-view">
+    <div class="post-header">
+      <div class="post-header-inner">
+        <button class="post-back" onclick="closePost()">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to blog
+        </button>
+        <div class="post-meta">
+          <span class="blog-tag" id="post-tag">CGM Technology</span>
+          <span style="font-size: 12px; color: var(--text-muted);" id="post-date">May 2025</span>
+        </div>
+        <h1 class="post-title" id="post-title">Dexcom G7 vs. Abbott Libre 3: What the Data Actually Shows</h1>
+        <div class="post-author">By Beyond Diabetes · Digital Infrastructure Team</div>
+      </div>
+    </div>
+    <div class="post-body" id="post-body"></div>
+  </div>
+</div>
+
+<!-- RESOURCES PAGE -->
+<div id="page-resources" class="page">
+  <div class="hero" style="padding: 60px 2rem 72px;">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Device &amp; Care Guide</div>
+      <h1>Find the right <em>tools</em><br>for your care.</h1>
+      <p class="hero-desc">A curated reference for students navigating CGMs, insulin pumps, and connected pen systems — with links to manufacturer resources.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+
+      <div class="guide-intro">
+        <div class="guide-intro-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <p><strong>Heads up:</strong> This guide is for educational reference only. Always consult your endocrinologist or diabetes care team before changing devices or management approaches. Insurance coverage and device availability vary.</p>
+      </div>
+
+      <!-- CGMs -->
+      <div class="guide-category">
+        <div class="guide-cat-header">
+          <span class="guide-cat-badge">CGM</span>
+          <span class="guide-cat-title">Continuous Glucose Monitors</span>
+        </div>
+        <div class="guide-items">
+          <div class="guide-item">
+            <div class="guide-item-brand">Dexcom</div>
+            <div class="guide-item-model">G7</div>
+            <div class="guide-item-desc">10-day wear, 30-minute warm-up, fully disposable all-in-one sensor/transmitter. Real-time readings on iOS/Android and Apple Watch. MARD ~8.2%.</div>
+            <a class="guide-item-link" href="https://www.dexcom.com/g7" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Abbott</div>
+            <div class="guide-item-model">FreeStyle Libre 3</div>
+            <div class="guide-item-desc">14-day wear, no fingerstick calibration required, 1-minute sensor warm-up. World's smallest CGM at time of launch. Real-time glucose every minute.</div>
+            <a class="guide-item-link" href="https://www.freestyle.abbott/us-en/freestyle-libre-3.html" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Medtronic</div>
+            <div class="guide-item-model">Guardian 4</div>
+            <div class="guide-item-desc">7-day wear, calibration-free, designed to integrate directly with Medtronic's MiniMed 780G pump for closed-loop automation.</div>
+            <a class="guide-item-link" href="https://www.medtronicdiabetes.com/products/guardian-4-sensor" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Dexcom</div>
+            <div class="guide-item-model">Stelo (OTC)</div>
+            <div class="guide-item-desc">First FDA-cleared OTC CGM for adults without insulin. 15-day wear. Available without a prescription — a major step for broader diabetes monitoring access.</div>
+            <a class="guide-item-link" href="https://www.dexcom.com/stelo" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pumps -->
+      <div class="guide-category">
+        <div class="guide-cat-header">
+          <span class="guide-cat-badge" style="background: var(--teal-800);">Pumps</span>
+          <span class="guide-cat-title">Insulin Pumps &amp; Automated Delivery</span>
+        </div>
+        <div class="guide-items">
+          <div class="guide-item">
+            <div class="guide-item-brand">Insulet</div>
+            <div class="guide-item-model">Omnipod 5</div>
+            <div class="guide-item-desc">Tubeless patch pump with SmartAdjust algorithm for automated insulin delivery. Pairs with Dexcom G6/G7. FDA-cleared hybrid closed-loop for Type 1.</div>
+            <a class="guide-item-link" href="https://www.omnipod.com/omnipod-5-system" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Tandem</div>
+            <div class="guide-item-model">t:slim X2 with Control-IQ</div>
+            <div class="guide-item-desc">Tubed pump with predictive low glucose suspend and automated correction boluses. Pairs with Dexcom G6 or G7. Remotely updatable via software.</div>
+            <a class="guide-item-link" href="https://www.tandemdiabetes.com/products/t-slim-x2-insulin-pump" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Medtronic</div>
+            <div class="guide-item-model">MiniMed 780G</div>
+            <div class="guide-item-desc">Advanced hybrid closed-loop with auto-correction boluses every 5 minutes. Pairs with Guardian 4 CGM. Targets a glucose level set by the user.</div>
+            <a class="guide-item-link" href="https://www.medtronicdiabetes.com/products/minimed-780g-insulin-pump-system" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smart Pens -->
+      <div class="guide-category">
+        <div class="guide-cat-header">
+          <span class="guide-cat-badge" style="background: var(--sand-700);">Smart Pens</span>
+          <span class="guide-cat-title">Connected Insulin Pens</span>
+        </div>
+        <div class="guide-items">
+          <div class="guide-item">
+            <div class="guide-item-brand">Novo Nordisk</div>
+            <div class="guide-item-model">NovoPen 6</div>
+            <div class="guide-item-desc">Reusable connected insulin pen that automatically records dose time and amount. Data syncs to diabetes management apps. Works with Dexcom CGM data.</div>
+            <a class="guide-item-link" href="https://www.novonordisk.com/patients/diabetes-care/insulins/novopen.html" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Medtronic</div>
+            <div class="guide-item-model">InPen</div>
+            <div class="guide-item-desc">Smart reusable pen with bolus calculator app. Tracks doses, temperature, and timing. Integrates with Dexcom and Abbott CGM data for recommended dosing support.</div>
+            <a class="guide-item-link" href="https://www.inpen.com" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support Resources -->
+      <div class="guide-category">
+        <div class="guide-cat-header">
+          <span class="guide-cat-badge" style="background: var(--teal-400);">Support</span>
+          <span class="guide-cat-title">Organizations &amp; Advocacy</span>
+        </div>
+        <div class="guide-items">
+          <div class="guide-item">
+            <div class="guide-item-brand">Non-Profit</div>
+            <div class="guide-item-model">American Diabetes Association</div>
+            <div class="guide-item-desc">Standards of care, advocacy, research funding, and a national helpline. Comprehensive resources for Type 1, Type 2, and gestational diabetes.</div>
+            <a class="guide-item-link" href="https://diabetes.org" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Non-Profit</div>
+            <div class="guide-item-model">JDRF (Breakthrough T1D)</div>
+            <div class="guide-item-desc">Leading Type 1 diabetes research funder. Resources for newly diagnosed individuals, advocacy for insulin pricing reform, and clinical trial matching.</div>
+            <a class="guide-item-link" href="https://www.breakthrought1d.org" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-brand">Stony Brook</div>
+            <div class="guide-item-model">Student Health Services</div>
+            <div class="guide-item-desc">On-campus health resources for managing chronic conditions. Includes pharmacy, primary care, and referrals to endocrinology through Stony Brook Medicine.</div>
+            <a class="guide-item-link" href="https://studentaffairs.stonybrook.edu/shs/" target="_blank">Visit site <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="page-contact" class="page">
+  <div class="hero" style="padding: 60px 2rem 72px;">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Get in touch</div>
+      <h1>We'd love to <em>hear</em><br>from you.</h1>
+    </div>
+  </div>
+  <section class="contact-section">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div>
+          <div class="section-label" style="margin-bottom: 1.5rem;">Send a message</div>
+          <div class="contact-form-group">
+            <label class="contact-label">Name</label>
+            <input type="text" class="contact-input" placeholder="Your full name">
+          </div>
+          <div class="contact-form-group">
+            <label class="contact-label">Email</label>
+            <input type="email" class="contact-input" placeholder="you@stonybrook.edu">
+          </div>
+          <div class="contact-form-group">
+            <label class="contact-label">Subject</label>
+            <input type="text" class="contact-input" placeholder="How can we help?">
+          </div>
+          <div class="contact-form-group">
+            <label class="contact-label">Message</label>
+            <textarea class="contact-textarea" placeholder="Tell us what's on your mind..."></textarea>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+            Send message
+          </button>
+        </div>
+        <div>
+          <div class="section-label" style="margin-bottom: 1.5rem;">Other ways to reach us</div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-val">beyonddiabetes@stonybrook.edu</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2z"/><line x1="9" y1="9" x2="9" y2="9"/><line x1="12" y1="9" x2="12" y2="9"/><line x1="15" y1="9" x2="15" y2="9"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">SB Engage</div>
+              <div class="contact-info-val">Find us on SB Engage to join</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-val">Stony Brook University, NY 11794</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem; padding: 1.25rem 1.5rem; border: 1px solid var(--sand-200); border-radius: var(--radius-lg);">
+            <div style="font-weight: 600; font-size: 14px; margin-bottom: 0.5rem;">Open to all students</div>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.65;">You don't need to have diabetes to join. We welcome anyone interested in learning, supporting others, or contributing to our advocacy work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Beyond Diabetes · Stony Brook University</div>
+      <div style="margin-top: 4px;">Student-led organization · Est. 2024</div>
+    </div>
+    <div class="footer-disclaimer">This website is for informational and community purposes only. It is not a source of medical advice. Always consult a qualified healthcare provider for diabetes management decisions.</div>
+  </div>
+</footer>
+
+<script>
+const posts = {
+  'post-1': {
+    tag: 'CGM Technology',
+    date: 'May 2025',
+    title: 'Dexcom G7 vs. Abbott Libre 3: What the Data Actually Shows',
+    body: `
+      <p>Continuous glucose monitors have become a cornerstone of modern Type 1 management and are increasingly used by those with Type 2 as well. In 2025, the two most widely used consumer CGMs remain the Dexcom G7 and the Abbott FreeStyle Libre 3 — but comparing them requires looking past marketing claims at what independent clinical data actually shows.</p>
+      <h2>Accuracy</h2>
+      <p>Mean Absolute Relative Difference (MARD) is the primary clinical benchmark for CGM accuracy. A lower MARD means readings that better match venous blood glucose. The G7 has published MARD values around 8.2%, while the Libre 3 has reported approximately 7.9% in its pivotal trial — statistically comparable, and both well below the FDA's 10% benchmark for CGM approval.</p>
+      <div class="post-callout">What MARD doesn't capture: how often a sensor fails during the wear period, lag time in rapidly changing glucose scenarios, and accuracy during hypoglycemia. These are areas where real-world data can differ significantly from controlled trial outcomes.</div>
+      <h2>Wear time &amp; design</h2>
+      <p>The G7 offers a 10-day wear period with a fully disposable transmitter/sensor combo — no separate transmitter to charge or swap. Its form factor is small and the new "grace period" feature allows a replacement sensor to be pre-soaked while the current one is still active. The Libre 3 extends wear to 14 days and is the world's smallest CGM, making it particularly discrete on the arm.</p>
+      <h2>Smartphone integration</h2>
+      <p>Both devices offer real-time readings on iOS and Android. The G7 supports Apple Watch natively without needing a phone present, which is a meaningful advantage for active users. The Libre 3 now offers real-time streaming after earlier versions required a scan — a major improvement for their platform.</p>
+      <h2>Bottom line</h2>
+      <p>For most users, the choice between G7 and Libre 3 will come down to insurance coverage, desired wear time, and whether pump integration is needed. Users pairing with an Omnipod 5 or Tandem t:slim will need the Dexcom; the Libre 3 integrates with its own ecosystem and some Abbott-partnered systems.</p>
+    `
+  },
+  'post-2': {
+    tag: 'Closed-Loop Systems',
+    date: 'April 2025',
+    title: 'Automated Insulin Delivery in 2025: The State of the Loop',
+    body: `
+      <p>Hybrid closed-loop systems — sometimes called "the loop" or AID (Automated Insulin Delivery) — have matured dramatically over the past five years. What was once a DIY movement among technically inclined patients is now the standard of care recommendation for many Type 1 individuals. Here's where things stand.</p>
+      <h2>What "hybrid closed-loop" means</h2>
+      <p>A fully closed-loop system would manage glucose entirely autonomously — no manual boluses, no carb counting. We're not there yet. "Hybrid" means the system automates basal insulin delivery and correction boluses, but still requires the user to announce meals. The "hybrid" qualifier is important context when reading device claims.</p>
+      <h2>The current leaders</h2>
+      <p>The Omnipod 5 and Tandem t:slim X2 with Control-IQ remain the two primary FDA-cleared AID options in the US. The Omnipod 5's tubeless design gives it a distinct ergonomic advantage, particularly for children and active adults. Tandem's Control-IQ technology runs a predictive algorithm that is updatable via software — users received the latest improvements via a download, not a device replacement.</p>
+      <div class="post-callout">The Medtronic MiniMed 780G has FDA clearance and brings auto-correction boluses every 5 minutes — a more aggressive automation model than some competitors. Its real-world A1c data in European markets has been compelling, though it remains under-utilized in the US due to Medtronic's overall market share decline.</div>
+      <h2>What's still missing</h2>
+      <p>Meal announcement remains the biggest friction point. Research into "fully automated" systems using dual-hormone approaches (insulin + glucagon or pramlintide) is ongoing, but no fully closed-loop single-hormone system has reached broad clinical approval. Speed of insulin action is also a ceiling — faster analogs like Fiasp are helping, but physics limits how reactive any subcutaneous delivery system can be.</p>
+      <h2>The DIY community</h2>
+      <p>Systems like Loop (iOS), AAPS (Android), and OpenAPS continue to be used by a dedicated community. They often offer more configurability than commercial options and have in some cases driven features that commercial devices later adopted. They remain unregulated and require significant technical investment, but for the right person, they represent the cutting edge of AID.</p>
+    `
+  },
+  'post-3': {
+    tag: 'Research',
+    date: 'March 2025',
+    title: 'Non-Invasive Glucose Monitoring: Closer Than We Think?',
+    body: `
+      <p>The promise of a glucose monitor that requires no needle, no sensor, and no calibration has driven billions of research dollars over the past two decades. It has also produced a graveyard of failed companies. But in 2025, renewed interest — and more rigorous science — is prompting a second look.</p>
+      <h2>Why it's hard</h2>
+      <p>Glucose is present in interstitial fluid, blood, saliva, and sweat — but at concentrations that are difficult to isolate from background biological noise using non-invasive sensing. Spectroscopic approaches must distinguish glucose's molecular signature from thousands of other compounds, all through skin that varies in thickness, hydration, and pigmentation across individuals and even within the same person across days.</p>
+      <div class="post-callout">Apple has reportedly invested heavily in optical glucose monitoring research for the Apple Watch. Leaks and SEC filings have suggested the technology may be approaching consumer readiness, though regulatory clearance remains a significant hurdle. Independent verification of their claimed accuracy is still unavailable.</div>
+      <h2>Optical approaches</h2>
+      <p>Near-infrared (NIR) and mid-infrared (MIR) spectroscopy use light absorption patterns to infer glucose concentration. Samsung, Rockley Photonics, and several startups are pursuing this path. Early clinical data is promising in controlled conditions but accuracy under real-world variation remains problematic. Calibration drift is a significant unsolved challenge.</p>
+      <h2>Acoustic &amp; other modalities</h2>
+      <p>Photoacoustic spectroscopy — which uses pulsed light to generate ultrasonic waves that can be measured — has shown some of the best non-invasive accuracy data in recent literature. Companies like GlucoLight and academic groups at MIT and Cambridge have published results suggesting MARD values in the 10-15% range, which is still above current CGM benchmarks but represents significant progress.</p>
+      <h2>Realistic timeline</h2>
+      <p>Most experts in the field believe a regulatory-cleared, clinically accurate non-invasive glucose monitor is 3-7 years away at minimum. The FDA's clearance bar for CGMs is high, and non-invasive devices face even greater scrutiny given their history of overpromising. The technology is advancing, but tempering expectations remains appropriate.</p>
+    `
+  },
+  'post-4': {
+    tag: 'Insulin Delivery',
+    date: 'February 2025',
+    title: 'Smart Insulin Pens: A Bridge to Better Management',
+    body: `
+      <p>For the majority of people managing insulin-dependent diabetes worldwide, pumps remain inaccessible due to cost, availability, or preference. Smart insulin pens represent a meaningful middle ground — bringing data logging and dosing intelligence to a familiar form factor without the upfront cost or commitment of an insulin pump.</p>
+      <h2>What makes a pen "smart"</h2>
+      <p>The core feature is automatic dose logging: time, units, and insulin type are recorded and transmitted to an app without manual entry. This alone eliminates a common source of management error — forgotten doses or duplicate dosing. The NovoPen 6 accomplishes this passively through Bluetooth; users simply inject and the data appears in the app.</p>
+      <h2>InPen's bolus calculator</h2>
+      <p>The Medtronic InPen goes further with an integrated bolus calculator that factors in carbohydrate intake, current CGM reading (via integration with Dexcom or Libre), insulin-on-board, and individual settings. For users who find manual carb-ratio math stressful or error-prone, this is a substantive benefit. The system is FDA-cleared as a medical device, not just a wellness app.</p>
+      <div class="post-callout">Insurance coverage for smart pens is improving but inconsistent. The NovoPen 6 is a reusable device covered under durable medical equipment (DME) by some plans; the InPen has broader coverage. Checking your specific plan before prescribing is worth doing — out-of-pocket costs can vary dramatically.</div>
+      <h2>The data integration story</h2>
+      <p>The real value of smart pens emerges when their dose data is layered against CGM readings. Seeing that your 8pm dose was 3 units while your glucose had already been dropping — or that you forgot a lunchtime injection — produces actionable insight that retrospective A1c measurements can't provide. Both Abbott and Dexcom have built pen-compatible data views into their platforms.</p>
+    `
+  }
+};
+
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const navEl = document.getElementById('nav-' + page);
+  if (navEl) navEl.classList.add('active');
+  document.getElementById('blog-list-view').style.display = 'block';
+  document.getElementById('blog-post-view').classList.remove('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function openPost(postId) {
+  const post = posts[postId];
+  if (!post) return false;
+  document.getElementById('blog-list-view').style.display = 'none';
+  const view = document.getElementById('blog-post-view');
+  view.classList.add('active');
+  document.getElementById('post-tag').textContent = post.tag;
+  document.getElementById('post-date').textContent = post.date;
+  document.getElementById('post-title').textContent = post.title;
+  document.getElementById('post-body').innerHTML = post.body;
+  navigate('blog');
+  document.getElementById('blog-list-view').style.display = 'none';
+  view.classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function closePost() {
+  document.getElementById('blog-list-view').style.display = 'block';
+  document.getElementById('blog-post-view').classList.remove('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
