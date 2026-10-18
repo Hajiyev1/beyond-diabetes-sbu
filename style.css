@@ -6,19 +6,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --teal-50: #E1F5EE;
-  --teal-100: #9FE1CB;
-  --teal-200: #5DCAA5;
-  --teal-400: #1D9E75;
-  --teal-600: #0F6E56;
-  --teal-800: #085041;
-  --teal-900: #04342C;
+   --teal-50:  #EAF3FC;   /* very light blue: backgrounds, tags, hero circle */
+   --teal-100: #C7DFF5;   /* light blue borders */
+   --teal-200: #9CC6EC;   /* hover borders */
+   --teal-400: #3A80C6;   /* main accent: buttons, Contact link */
+   --teal-600: #1F62A3;   /* blue text and button hover */
+   --teal-800: #164A7A;   /* dark blue text on light boxes */
+   --teal-900: #0E3257;
 
-  --sand-50: #FAF8F4;
-  --sand-100: #F0EDE7;
-  --sand-200: #DDD9D0;
-  --sand-400: #B0A99C;
-  --sand-700: #6B6660;
+   --sand-50:  #F6F9FC;
+   --sand-100: #EDF2F7;
+   --sand-200: #D9E2EC;
+   --sand-400: #A3B1C2;
+   --sand-700: #5E6B7B;
 
   --text-primary: #1A1A18;
   --text-secondary: #5A5956;
